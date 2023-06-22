@@ -1,7 +1,7 @@
 <h1 align="center">Hi 👋, I'm Josef</h1>
 <h3 align="center">A passionate DevOp in training</h3>
 
-- 🌱 I’m currently learning **python, helm, CI/CD, automation and many more**
+- 🌱 I’m currently learning **python, helm, CI/CD, automation and more**
 
 - 📫 How to reach me: **me@jhofer.de**
 
