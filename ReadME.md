@@ -5,7 +5,7 @@
 
 - 📫 How to reach me: **me@jhofer.de**
 
-- ⚡ Uptime Kuma statuspage: **https://stats.jhofer.de**
+- ⚡ Uptime Kuma statuspage: <a href="http://stats.jhofer.de" target="_blank">stats.jhofer.de</a>
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
