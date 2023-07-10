@@ -7,6 +7,9 @@
 
 - ⚡ Uptime Kuma statuspage: <a href="http://stats.jhofer.de" target="_blank">stats.jhofer.de</a>
 
+  <img align="center" src="https://stats.jhofer.org/api/badge/17/uptime/168?label=Infrastructure%20(Last%207%20Days)+">
+  <img align="center" src="https://stats.jhofer.org/api/badge/18/uptime/168?label=Services%20(Last%207%20Days)+"
+
 <h3 align="left">Connect with me:</h3>
 <p align="left">
 <a href="https://linkedin.com/in/josef-h-65332423a" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="josef-h-65332423a" height="30" width="40" /></a>
