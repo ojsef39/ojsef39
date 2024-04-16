@@ -3,7 +3,7 @@
 
 - 📫 How to reach me: **me@jhofer.de**
 
-- ⚡ My project’s status page: <a href="https://stats.jhofer.de" target="_blank">stats.jhofer.de</a>
+- ⚡ Status page for my projects: <a href="https://stats.jhofer.de" target="_blank">stats.jhofer.de</a>
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
