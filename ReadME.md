@@ -1,7 +1,7 @@
 <h1 align="center">Hi 👋, I'm Josef</h1>
 <h3 align="center">A passionate junior sysadmin who's eager to learn and improve</h3>
 
-- 📫 How to reach me: **me@jhofer.de**
+- 📫 How to reach me: **me+github@jhofer.de**
 
 - ⚡ Status page for my projects: <a href="https://stats.jhofer.de" target="_blank">stats.jhofer.de</a>
 
