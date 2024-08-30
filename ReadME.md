@@ -1,5 +1,5 @@
 <h1 align="center">Hi 👋, I'm Josef</h1>
-<h3 align="center">A passionate DevOps apprentice who's eager to learn and improve</h3>
+<h3 align="center">A passionate junior sysadmin who's eager to learn and improve</h3>
 
 - 📫 How to reach me: **me@jhofer.de**
 
