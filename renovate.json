@@ -1,0 +1,9 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["github>JHOFER-Cloud/renovate-presets:default"],
+  "schedule": ["at any time"],
+  "automerge": true,
+  "automergeType": "pr",
+  "prHourlyLimit": 0,
+  "reviewers": ["ojsef39"]
+}
