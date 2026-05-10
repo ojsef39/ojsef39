@@ -134,13 +134,34 @@
           color = "mauve";
           link = "mailto:me+github@jhofer.de";
         };
-        linkedin = {
-          display = "linkedin";
-          logo = "linkedin";
-          color = "blue";
-          link = "https://linkedin.com/in/josef-h-65332423a";
-        };
       };
+
+      # LinkedIn was removed from simple-icons after a trademark request and
+      # GitHub strips `data:image/svg+xml` URIs from img src for security, so
+      # we hand-build the badge SVG and host it in the repo. Referenced via
+      # raw.githubusercontent.com (same path the snake uses).
+      linkedinBadgeSvg = p: let
+        textColor =
+          if p == palettes.latte
+          then "333"
+          else "fff";
+        path = "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z";
+      in ''<svg xmlns="http://www.w3.org/2000/svg" width="111" height="28" role="img" aria-label="LINKEDIN"><title>LINKEDIN</title><g shape-rendering="crispEdges"><rect width="111" height="28" fill="#${p.base}"/></g><g fill="#${textColor}" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" text-rendering="geometricPrecision" font-size="100"><g transform="translate(9 7) scale(.583)"><path fill="#${p.blue}" d="${path}"/></g><text transform="scale(.1)" x="655" y="175" textLength="670" font-weight="bold">LINKEDIN</text></g></svg>'';
+
+      linkedinSvgFiles = {
+        macchiato = pkgs.writeText "linkedin-macchiato.svg" (linkedinBadgeSvg palettes.macchiato);
+        latte = pkgs.writeText "linkedin-latte.svg" (linkedinBadgeSvg palettes.latte);
+      };
+
+      linkedinBadge = let
+        url = name: "./assets/linkedin-${name}.svg";
+        inner = mkPicture {
+          dark = url "macchiato";
+          light = url "latte";
+          alt = "linkedin";
+        };
+      in
+        mkLinked "https://linkedin.com/in/josef-h-65332423a" inner;
 
       toolchainBadges = {
         nix = {
@@ -250,6 +271,7 @@
             light = visitorsUrl palettes.latte;
             alt = "visitors";
           };
+          linkedin = linkedinBadge;
         }
         // lib.mapAttrs (_: themedBadge) (linkBadges // toolchainBadges);
 
@@ -267,8 +289,11 @@
         name = "d-regen";
         text = ''
           cd "$(git rev-parse --show-toplevel)"
+          mkdir -p assets
           install -m 0644 ${readmeFile} ./ReadME.md
-          echo "ReadME.md regenerated"
+          install -m 0644 ${linkedinSvgFiles.macchiato} ./assets/linkedin-macchiato.svg
+          install -m 0644 ${linkedinSvgFiles.latte} ./assets/linkedin-latte.svg
+          echo "ReadME.md and assets/ regenerated"
         '';
       };
 
