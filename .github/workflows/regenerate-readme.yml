@@ -1,0 +1,45 @@
+name: regenerate readme
+
+on:
+  push:
+    paths:
+      - flake.nix
+      - flake.lock
+      - template.md
+      - .github/workflows/regenerate-readme.yml
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: regenerate-readme-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - uses: cachix/install-nix-action@8aa03977d8d733052d78f4e008a241fd1dbf36b3 # v31.10.6
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - name: Regenerate ReadME.md
+        run: nix run .#regenerate
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet ReadME.md; then
+            echo "no changes"
+            exit 0
+          fi
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add ReadME.md
+          git commit -m "chore: regenerate ReadME.md"
+          git push
