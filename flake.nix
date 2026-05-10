@@ -113,7 +113,7 @@
         then mkLinked link inner
         else inner;
 
-      visitorsUrl = p: "https://komarev.com/ghpvc/?username=${username}&style=for-the-badge&color=${p.base}&label=VISITORS&labelColor=${p.mantle}";
+      visitorsUrl = p: "https://hits.sh/github.com/${username}.svg?style=for-the-badge&color=${p.base}&labelColor=${p.mantle}&label=visitors";
 
       linkBadges = {
         website = {
@@ -271,20 +271,36 @@
           echo "ReadME.md regenerated"
         '';
       };
+
+      preview = pkgs.writeShellApplication {
+        name = "d-preview";
+        runtimeInputs = [regenerate pkgs.gh-markdown-preview];
+        text = ''
+          cd "$(git rev-parse --show-toplevel)"
+          d-regen
+          gh-markdown-preview ReadME.md
+        '';
+      };
     in {
       packages = {
         default = readmeFile;
         readme = readmeFile;
-        inherit regenerate;
+        inherit regenerate preview;
       };
 
-      apps.regenerate = {
-        type = "app";
-        program = lib.getExe regenerate;
+      apps = {
+        regenerate = {
+          type = "app";
+          program = lib.getExe regenerate;
+        };
+        preview = {
+          type = "app";
+          program = lib.getExe preview;
+        };
       };
 
       devShells.default = pkgs.mkShell {
-        packages = [regenerate];
+        packages = [regenerate preview];
       };
 
       formatter = pkgs.alejandra;
