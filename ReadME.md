@@ -30,8 +30,8 @@
 ```yaml
 name: Josef Hofer
 role: system engineer / infra tinkerer
-work: "@faktorzehn"
-play: ["@JHOFER-Cloud", "@NixOS", "@nix-community"]
+work: "@mam-dev"
+play: ["@JHOFER-Cloud", "@lo-cafe"]
 focus: nix · kubernetes · observability
 motto: gitops, or it didn't happen
 ```
